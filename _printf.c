@@ -16,7 +16,9 @@ int _printf(const char *format, ...)
 	unsigned int i, len = 0;
 	char *str;
 	va_list args;
-
+	
+	if (!format)
+		return (0);
 	va_start(args, format);
 	for (i = 0; format[i]; i++)
 	{
