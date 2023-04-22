@@ -31,8 +31,10 @@ int _printf(const char *format, ...)
 					break;
 				case 's':
 					str = va_arg(args, char *);
-					p_string(str);
-					len += strlen(str) - 1;
+					if (str)
+						len += p_string(str) - 1;
+					else
+						len += p_string("(null)") - 1;
 					break;
 				case 'i':
 				case 'd':
@@ -45,7 +47,6 @@ int _printf(const char *format, ...)
 					p_char('%');
 					p_char(format[i]);
 					len++;
-					break;
 			}
 		}
 	}
