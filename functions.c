@@ -35,15 +35,11 @@ void p_char(char c)
 /**
  * p_string - print string.
  * @s: the the string
- *
  * Return: len.
  */
 
 int p_string(char *s)
 {
-if (!s)
-s = "(null)";
-
 write(1, s, strlen(s));
 return (strlen(s));
 }
