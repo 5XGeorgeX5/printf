@@ -2,6 +2,8 @@
 #include "main.h"
 #include <string.h>
 
+#define STRING ((str) ? str : "(null)")
+
 /**
  * _printf - print.
  * @format: the format
@@ -19,37 +21,28 @@ int _printf(const char *format, ...)
 	for (i = 0; format[i]; i++)
 	{
 		if (format[i] != '%')
-			p_char(format[i]);
-		else
+	{
+			len += p_char(format[i]);
+			continue;
+		}
+		switch (format[i])
 		{
-			len--;
-			i++;
-			switch (format[i])
-			{
-				case 'c':
-					p_char(va_arg(args, int));
-					break;
-				case 's':
-					str = va_arg(args, char *);
-					if (str)
-						len += p_string(str) - 1;
-					else
-						len += p_string("(null)") - 1;
-					break;
-				case 'i':
-				case 'd':
-					len += p_int(va_arg(args, int)) - 1;
-					break;
-				case '%':
-					p_char(format[i]);
-					break;
-				default:
-					p_char('%');
-					p_char(format[i]);
-					len++;
-			}
+			case 'c':
+				len += p_char(va_arg(args, int));
+				break;
+			case 's':
+				str = va_arg(args, char *);
+				len += p_string(STRING);
+				break;
+			case '%':
+				len += p_char(format[i]);
+				break;
+			default:
+				len += p_char('%');
+				len += p_char(format[i]);
+				break;
 		}
 	}
 	va_end(args);
-	return (len + i);
+	return (len);
 }
