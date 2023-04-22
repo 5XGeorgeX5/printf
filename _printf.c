@@ -25,6 +25,7 @@ int _printf(const char *format, ...)
 			len += p_char(format[i]);
 			continue;
 		}
+		i++;
 		switch (format[i])
 		{
 			case 'c':
