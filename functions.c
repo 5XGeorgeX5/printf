@@ -1,6 +1,25 @@
-#include <unistd.h>
 #include <stdlib.h>
+#include <stdarg.h>
 #include <string.h>
+#include <unistd.h>
+
+/**
+ * itoa - turns a number into string.
+ * @val: the value
+ * @base: the base
+ *
+ * Return: the string
+ */
+
+char *itoa(int val, int base)
+{
+	static char buf[32] = {0};
+	int i = 30;
+
+	for (; val && i ; --i, val /= base)
+		buf[i] = "0123456789abcdef"[val % base];
+	return (&buf[i + 1]);
+}
 
 /**
  * p_char - print char.
@@ -33,9 +52,8 @@ void p_string(char *s)
 
 int p_int(int n)
 {
-	char num[11];
+	char *num = itoa(n, 10);
 
-	itoa(n, num, 10);
 	write(1, num, strlen(num));
 	return (strlen(num));
 }

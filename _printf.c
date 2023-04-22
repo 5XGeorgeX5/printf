@@ -1,4 +1,6 @@
 #include <stdarg.h>
+#include "main.h"
+#include <string.h>
 
 /**
  * _printf - print.
@@ -6,7 +8,7 @@
  *
  * Return: the number of chars
  */
-i
+
 int _printf(const char *format, ...)
 {
 	unsigned int i, len = 0;
