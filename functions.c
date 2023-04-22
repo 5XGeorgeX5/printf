@@ -36,7 +36,7 @@ void p_char(char c)
  * p_string - print string.
  * @s: the the string
  *
- * Retrun: len.
+ * Return: len
  */
 
 int p_string(char *s)
