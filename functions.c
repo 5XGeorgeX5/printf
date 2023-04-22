@@ -35,15 +35,8 @@ void p_char(char c)
 /**
  * p_string - print string.
  * @s: the the string
-<<<<<<< HEAD
  *
-<<<<<<< HEAD
  * Return: len
-=======
-=======
->>>>>>> ab1b7928d85102cbdb91726421ffc4d96b1b34ad
- * Return: len.
->>>>>>> 6c4ac273553970a62db6968d6e59e15510820fb4
  */
 
 int p_string(char *s)
