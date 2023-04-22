@@ -36,11 +36,16 @@ void p_char(char c)
  * p_string - print string.
  * @s: the the string
  *
+ * Retrun: len.
  */
 
-void p_string(char *s)
+int p_string(char *s)
 {
-	write(1, s, strlen(s));
+if (!s)
+s = "(null)";
+
+write(1, s, strlen(s));
+return (strlen(s));
 }
 
 /**
