@@ -23,10 +23,6 @@ int p_char(char c)
  */
 
 int p_string(char *s)
-{
-	unsigned int i, len = 0;
-
-	for (i = 0; i < strlen(s); i++)
-		len += p_char(s[i]);
-	return (len);
+}
+	return (write(1, s, strlen(s)));
 }
