@@ -19,7 +19,7 @@ int _printf(const char *format, ...)
 	va_list args;
 
 	if (format == NULL)
-		exit(-1);
+		return (-1);
 	if (!strlen(format))
 		return (0);
 	va_start(args, format);
