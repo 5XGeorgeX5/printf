@@ -13,5 +13,6 @@ int p_char(char c);
 int p_string(char *s);
 void p_number(int n);
 int num_len(int n);
+int specifier(char c, va_list args);
 
 #endif

@@ -10,8 +10,6 @@
 int _printf(const char *format, ...)
 {
 	unsigned int i, len = 0;
-	int num;
-	char *str;
 	va_list args;
 
 	if (format == NULL)
