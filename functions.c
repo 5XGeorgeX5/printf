@@ -28,18 +28,16 @@ int p_string(char *s)
  * p_number - print number
  * @n: number to be printed
  *
- * Return: len.
  */
 
-int p_number(int n)
+void p_number(int n)
 {
 	unsigned int n1;
-	int len = 0;
 
 	if (n < 0)
 	{
 		n1 = -n;
-		len += p_char('-');
+		p_char('-');
 	}
 	else
 		n1 = n;
@@ -47,7 +45,26 @@ int p_number(int n)
 	if (n1 / 10)
 		p_number(n1 / 10);
 
-	return (p_char((n1 % 10) + '0') + len);
+	p_char((n1 % 10) + '0');
+}
+
+/**
+ * num_len - return the number len
+ * @n: number to be printed
+ *
+ * Return: len.
+ */
+
+int num_len(int n)
+{
+	int len = 1;
+
+	if (n < 0)
+		len++;
+	while (n /= 10)
+		len++;
+
+	return (len);
 }
 
 /**
@@ -75,7 +92,8 @@ int specifier(char c, va_list args)
 		case 'd':
 		case 'i':
 			num = va_arg(args, int);
-			len += p_number(num);
+			p_number(num);
+			len += num_len(num);
 			break;
 		case '%':
 			len += p_char('%');
