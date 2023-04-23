@@ -1,6 +1,7 @@
 #include <stdarg.h>
 #include "main.h"
 #include <string.h>
+#include <stdlib.h>
 
 #define STRING ((str) ? str : "(null)")
 
@@ -16,8 +17,10 @@ int _printf(const char *format, ...)
 	unsigned int i, len = 0;
 	char *str;
 	va_list args;
-	
-	if (!format)
+
+	if (format == NULL)
+		exit(-1);
+	if (!strlen(format))
 		return (0);
 	va_start(args, format);
 	for (i = 0; format[i]; i++)
