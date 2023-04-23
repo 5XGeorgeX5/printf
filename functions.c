@@ -23,6 +23,6 @@ int p_char(char c)
  */
 
 int p_string(char *s)
-}
+{
 	return (write(1, s, strlen(s)));
 }
