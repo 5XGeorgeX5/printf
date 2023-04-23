@@ -3,9 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-/*
- * #define STRING ((str) ? str : "(null)")
-*/
+#define STRING ((str) ? str : "(null)")
 
 /**
  * _printf - print.
@@ -40,7 +38,7 @@ int _printf(const char *format, ...)
 				break;
 			case 's':
 				str = va_arg(args, char *);
-				len += p_string(str);
+				len += p_string(STRING);
 				break;
 			case '%':
 				len += p_char(format[i]);
