@@ -1,34 +1,52 @@
 #include "main.h"
 
 /**
- * p_binary - print a binary number
+ * p_bi_oc - print a binary or orctal number
  * @n: the num
+ * @base: the base
+ * @len: the len
  *
  * Return: len.
  */
 
-int p_binary(unsigned int n)
+int p_bi_oc(unsigned int n, int base, int len)
 {
-	unsigned int m, i;
-	unsigned int a[32];
-	int len =  0;
+	unsigned int m = n;
 
-	m = 2147483648;
-	a[0] = n / m;
-	for (i = 1; i < 32; i++)
-	{
-		m /= 2;
-		a[i] = (n / m) % 2;
-	}
-	for (i = 0; i < 31 ; i++)
-		if (a[i])
-			break;
-	for (; i < 32; i++)
-	{
-		char z = '0' + a[i];
+	m /= base;
+	if (m)
+		len = p_bi_oc(m, base, len);
+	len += p_char('0' + n % base);
+	return (len);
+}
 
-		write(1, &z, 1);
+/**
+ * p_u_number - print unsigned number
+ * @n: number to be printed
+ *
+ */
+
+void p_u_number(unsigned int n)
+{
+	if (n / 10)
+		p_number(n / 10);
+
+	p_char((n % 10) + '0');
+}
+
+/**
+ * num_u_len - return the number len
+ * @n: number to be printed
+ *
+ * Return: len.
+ */
+
+int num_u_len(unsigned int n)
+{
+	int len = 1;
+
+	while (n /= 10)
 		len++;
-	}
+
 	return (len);
 }

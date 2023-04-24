@@ -78,6 +78,7 @@ int num_len(int n)
 int specifier(char c, va_list args)
 {
 	int num, len = 0;
+	unsigned int num2;
 	char *str;
 
 	switch (c)
@@ -96,7 +97,15 @@ int specifier(char c, va_list args)
 			len += num_len(num);
 			break;
 		case 'b':
-			len += p_binary(va_arg(args, unsigned int));
+			len += p_bi_oc(va_arg(args, unsigned int), 2, 0);
+			break;
+		case 'o'
+			len += p_bi_oc(va_arg(arg, unsigned int), 8, 0);
+			break;
+		case 'u':
+			num2 = va_arg(args, unsigned int);
+			p_u_number(num2);
+			len += num_u_len(num2);
 			break;
 		case '%':
 			len += p_char('%');
