@@ -9,7 +9,7 @@
 
 int p_binary(unsigned int n)
 {
-	unsigned int n, m, i;
+	unsigned int m, i;
 	unsigned int a[32];
 	int len =  0;
 
