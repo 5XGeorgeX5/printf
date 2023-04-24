@@ -59,6 +59,7 @@ int num_len(int n)
 {
 	int len = 1;
 
+	p_number(n);
 	if (n < 0)
 		len++;
 	while (n /= 10)
@@ -77,8 +78,7 @@ int num_len(int n)
 
 int specifier(char c, va_list args)
 {
-	int num, len = 0;
-	unsigned int num2;
+	int len = 0;
 	char *str;
 
 	switch (c)
@@ -92,23 +92,22 @@ int specifier(char c, va_list args)
 			break;
 		case 'd':
 		case 'i':
-			num = va_arg(args, int);
-			p_number(num);
-			len += num_len(num);
+			len += num_len(va_arg(args, int));
 			break;
 		case 'b':
-			len += p_bi_oc(va_arg(args, unsigned int), 2, 0);
+			len += p_base(va_arg(args, unsigned int), 2, 55, 0);
 			break;
 		case 'o':
-			len += p_bi_oc(va_arg(args, unsigned int), 8, 0);
+			len += p_base(va_arg(args, unsigned int), 8, 55, 0);
+			break;
+		case 'x':
+			len += p_base(va_arg(args, unsigned int), 16, 87, 0);
+			break;
+		case 'X':
+			len += p_base(va_arg(args, unsigned int), 16, 55, 0);
 			break;
 		case 'u':
-			num2 = va_arg(args, unsigned int);
-			p_u_number(num2);
-			len += num_u_len(num2);
-			break;
-		case '%':
-			len += p_char('%');
+			len += num_u_len(va_arg(args, unsigned int));
 			break;
 		default:
 			len += p_char('%');

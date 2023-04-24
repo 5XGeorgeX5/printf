@@ -1,22 +1,26 @@
 #include "main.h"
 
 /**
- * p_bi_oc - print a binary or orctal number
+ * p_base - print a number
  * @n: the num
  * @base: the base
  * @len: the len
+ * @cap: the capitalization
  *
  * Return: len.
  */
 
-int p_bi_oc(unsigned int n, int base, int len)
+int p_base(unsigned int n, int base, int cap, int len)
 {
 	unsigned int m = n;
 
 	m /= base;
 	if (m)
-		len = p_bi_oc(m, base, len);
-	len += p_char('0' + n % base);
+		len = p_base(m, base, cap, len);
+	if (n % base < 10)
+		len += p_char('0' + n % base);
+	else
+		len += p_char(cap + n % base);
 	return (len);
 }
 
@@ -45,6 +49,7 @@ int num_u_len(unsigned int n)
 {
 	int len = 1;
 
+	p_u_number(n);
 	while (n /= 10)
 		len++;
 
