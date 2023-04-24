@@ -99,8 +99,8 @@ int specifier(char c, va_list args)
 		case 'b':
 			len += p_bi_oc(va_arg(args, unsigned int), 2, 0);
 			break;
-		case 'o'
-			len += p_bi_oc(va_arg(arg, unsigned int), 8, 0);
+		case 'o':
+			len += p_bi_oc(va_arg(args, unsigned int), 8, 0);
 			break;
 		case 'u':
 			num2 = va_arg(args, unsigned int);
