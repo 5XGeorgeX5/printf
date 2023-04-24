@@ -81,41 +81,36 @@ int specifier(char c, va_list args)
 	int len = 0;
 	char *str;
 
-	switch (c)
+	if (c == 'c')
+		len += p_char(va_arg(args, int));
+	else if (c == 's')
 	{
-		case 'c':
-			len += p_char(va_arg(args, int));
-			break;
-		case 's':
-			str = va_arg(args, char *);
-			len += p_string(STRING);
-			break;
-		case 'd':
-		case 'i':
-			len += num_len(va_arg(args, int));
-			break;
-		case 'b':
-			len += p_base(va_arg(args, unsigned int), 2, 55, 0);
-			break;
-		case 'o':
-			len += p_base(va_arg(args, unsigned int), 8, 55, 0);
-			break;
-		case 'x':
-			len += p_base(va_arg(args, unsigned int), 16, 87, 0);
-			break;
-		case 'X':
-			len += p_base(va_arg(args, unsigned int), 16, 55, 0);
-			break;
-		case 'u':
-			len += num_u_len(va_arg(args, unsigned int));
-			break;
-		case '%':
-			len += p_char('%');
-			break;
-		default:
-			len += p_char('%');
-			len += p_char(c);
-			break;
+		str = va_arg(args, char *);
+		len += p_string(STRING);
+	}
+	else if (c == 'i' || c == 'd')
+		len += num_len(va_arg(args, int));
+	else if (c == 'b')
+		len += p_base(va_arg(args, unsigned int), 2, 55, 0);
+	else if (c == 'o')
+		len += p_base(va_arg(args, unsigned int), 8, 55, 0);
+	else if (c == 'x')
+		len += p_base(va_arg(args, unsigned int), 16, 87, 0);
+	else if (c == 'X')
+		len += p_base(va_arg(args, unsigned int), 16, 55, 0);
+	else if (c == 'u')
+		len += num_u_len(va_arg(args, unsigned int));
+	else if (c == '%')
+		len += p_char('%');
+	else if (c == 'S')
+	{
+		str = va_arg(args, char *);
+		len += p_s_string(STRING);
+	}
+	else
+	{
+		len += p_char('%');
+		len += p_char(c);
 	}
 	return (len);
 }

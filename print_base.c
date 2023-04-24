@@ -55,3 +55,30 @@ int num_u_len(unsigned int n)
 
 	return (len);
 }
+
+/**
+ * p_s_string - print string
+ * @s: number to be printed
+ *
+ * Return: len.
+ */
+
+int p_s_string(char *s)
+{
+	int i, len = 0;
+
+	for (i = 0; i < (int)strlen(s); i++)
+	{
+		if (s[i] < 32 || s[i] >= 127)
+		{
+			len += p_char('\\');
+			len += p_char('x');
+			if (s[i] < 16)
+				len += p_char('0');
+			len += p_base(s[i], 16, 55, 0);
+		}
+		else
+			len += p_char(s[i]);
+	}
+	return (len);
+}
