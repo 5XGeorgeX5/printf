@@ -109,6 +109,9 @@ int specifier(char c, va_list args)
 		case 'u':
 			len += num_u_len(va_arg(args, unsigned int));
 			break;
+		case '%':
+			len += p_char('%');
+			break;
 		default:
 			len += p_char('%');
 			len += p_char(c);
