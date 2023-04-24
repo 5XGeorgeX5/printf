@@ -95,6 +95,9 @@ int specifier(char c, va_list args)
 			p_number(num);
 			len += num_len(num);
 			break;
+		case 'b':
+			len += p_binary(va_arg(args, unsigned int));
+			break;
 		case '%':
 			len += p_char('%');
 			break;
