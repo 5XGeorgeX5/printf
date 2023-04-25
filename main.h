@@ -5,6 +5,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include <unistd.h>
+#include <ctype.h>
 
 #define STRING ((str) ? str : "(null)")
 
@@ -21,5 +22,6 @@ int p_s_string(char *s);
 int p_address(unsigned long n, int len);
 int h_address(unsigned long p);
 int p_r_string(char *s);
+int p_R_string(char *s);
 
 #endif

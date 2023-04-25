@@ -20,7 +20,7 @@ int h_address(unsigned long p)
 }
 
 /**
- * p_r_string - reversed string.
+ * p_r_string - prints reversed string.
  * @s: the the string
  *
  * Return: len.
@@ -32,6 +32,32 @@ int p_r_string(char *s)
 
 	for (i = (int)strlen(s) - 1; i >= 0; i--)
 		len += p_char(s[i]);
+	return (len);
+}
+
+/**
+ * p_R_string - prints the rot13'ed string.
+ * @s: the the string
+ *
+ * Return: len.
+ */
+
+int p_R_string(char *s)
+{
+	int i, len = 0;
+
+	for (i = 0; i < (int)strlen(s); i++)
+	{
+		if (isalpha(s[i]))
+		{
+			if (s[i] < 'N' || (s[i] > 'Z' && s[i] < 'n'))
+				len += p_char(s[i] + 13);
+			else
+				len += p_char(s[i] - 13);
+		}
+		else
+			len += p_char(s[i]);
+	}
 	return (len);
 }
 

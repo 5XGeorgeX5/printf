@@ -106,6 +106,8 @@ int specifier(char c, va_list args)
 		len += p_s_string(va_arg(args, char *));
 	else if (c == 'r')
 		len += p_r_string(va_arg(args, char *));
+	else if (c == 'R')
+		len += p_R_string(va_arg(args, char *));
 	else if (c == 'p')
 		len += h_address(va_arg(args, unsigned long));
 	else
