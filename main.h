@@ -20,5 +20,6 @@ int num_u_len(unsigned int n);
 int p_s_string(char *s);
 int p_address(unsigned long n, int len);
 int h_address(unsigned long p);
+int p_r_string(char *s);
 
 #endif

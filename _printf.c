@@ -20,6 +20,22 @@ int h_address(unsigned long p)
 }
 
 /**
+ * p_r_string - reversed string.
+ * @s: the the string
+ *
+ * Return: len.
+ */
+
+int p_r_string(char *s)
+{
+	int i, len = 0;
+
+	for (i = (int)strlen(s) - 1; i >= 0; i--)
+		len += p_char(s[i]);
+	return (len);
+}
+
+/**
  * _printf - print.
  * @format: the format
  *
