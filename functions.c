@@ -103,10 +103,9 @@ int specifier(char c, va_list args)
 	else if (c == '%')
 		len += p_char('%');
 	else if (c == 'S')
-	{
-		str = va_arg(args, char *);
-		len += p_s_string(STRING);
-	}
+		len += p_s_string(va_arg(args, char *));
+	else if (c == 'p')
+		len += h_address(va_arg(args, unsigned long));
 	else
 	{
 		len += p_char('%');

@@ -82,3 +82,25 @@ int p_s_string(char *s)
 	}
 	return (len);
 }
+
+/**
+ * p_address - print address
+ * @n: the addres
+ * @len: len
+ *
+ * Return: len.
+ */
+
+int p_address(unsigned long n, int len)
+{
+	unsigned long m = n;
+
+	m /= 16;
+	if (m)
+		len = p_address(m, len);
+	if (n % 16 < 10)
+		len += p_char('0' + n % 16);
+	else
+		len += p_char(87 + n % 16);
+	return (len);
+}
